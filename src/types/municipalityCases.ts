@@ -19,3 +19,8 @@ interface DayCases {
   nc7d: number;
   nc14d: number;
 }
+
+export interface MunicipalityCasesMetadata {
+  collectionUpdatedAt?: Date;
+  sourceUpdatedAt?: Date;
+}
