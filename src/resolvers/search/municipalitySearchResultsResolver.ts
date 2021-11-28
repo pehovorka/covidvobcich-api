@@ -5,13 +5,14 @@ import municipalities = require("./assets/municipalities");
 
 interface municipalitySearchResultsArgs {
   name: string;
+  limit: number;
 }
 
 export const municipalitySearchResultsResolver = {
   Query: {
     municipalitySearch: (
       _: unknown,
-      { name }: municipalitySearchResultsArgs
+      { name, limit }: municipalitySearchResultsArgs
     ): MunicipalitySearchResult[] | undefined => {
       const fuseOptions: Fuse.IFuseOptions<MunicipalitySearchResult> = {
         threshold: 0.2,
@@ -21,7 +22,10 @@ export const municipalitySearchResultsResolver = {
 
       const searchResults = fuse.search(name);
 
-      const result = searchResults.map((searchResult) => searchResult.item);
+      const result = searchResults
+        .map((searchResult) => searchResult.item)
+        .slice(0, limit);
+
       return result;
     },
   },
