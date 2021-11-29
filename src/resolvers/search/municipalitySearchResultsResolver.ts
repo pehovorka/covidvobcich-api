@@ -1,4 +1,5 @@
 import Fuse from "fuse.js";
+import diacritics from "diacritics";
 
 import { MunicipalitySearchResult } from "../../types/municipalitySearch";
 import municipalities = require("./assets/municipalities");
@@ -17,10 +18,14 @@ export const municipalitySearchResultsResolver = {
       const fuseOptions: Fuse.IFuseOptions<MunicipalitySearchResult> = {
         threshold: 0.2,
         keys: ["municipalityName"],
+        getFn: (obj) => {
+          const value = diacritics.remove(obj.municipalityName);
+          return value;
+        },
       };
       const fuse = new Fuse(municipalities.municipalities, fuseOptions);
 
-      const searchResults = fuse.search(name);
+      const searchResults = fuse.search(diacritics.remove(name));
 
       const result = searchResults
         .map((searchResult) => searchResult.item)
