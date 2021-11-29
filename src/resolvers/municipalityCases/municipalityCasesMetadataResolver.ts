@@ -1,6 +1,10 @@
 import { config } from "../../config";
-import { MunicipalityCasesMetadata } from "../../types/municipalityCases";
 import { collections } from "../../utils/collections";
+
+interface MunicipalityCasesMetadata {
+  collectionUpdatedAt?: Date;
+  sourceUpdatedAt?: Date;
+}
 
 export const municipalityCasesMetadataResolver = {
   Query: {

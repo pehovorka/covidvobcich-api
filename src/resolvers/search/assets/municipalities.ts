@@ -1,4 +1,4 @@
-import { MunicipalitySearchResult } from "../../../types/municipalitySearch";
+import { MunicipalitySearchResult } from "../municipalitySearchResultsResolver";
 
 export const municipalities: MunicipalitySearchResult[] = [
   {

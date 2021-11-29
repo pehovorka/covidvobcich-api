@@ -1,8 +1,13 @@
 import Fuse from "fuse.js";
 import diacritics from "diacritics";
 
-import { MunicipalitySearchResult } from "../../types/municipalitySearch";
 import municipalities = require("./assets/municipalities");
+
+export interface MunicipalitySearchResult {
+  municipalityId: number;
+  municipalityName: string;
+  districtName?: string;
+}
 
 interface municipalitySearchResultsArgs {
   name: string;
