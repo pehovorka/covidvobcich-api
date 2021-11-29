@@ -1,0 +1,42 @@
+import Fuse from "fuse.js";
+import diacritics from "diacritics";
+
+import municipalities = require("./assets/municipalities");
+
+export interface MunicipalitySearchResult {
+  municipalityId: number;
+  municipalityName: string;
+  districtName?: string;
+}
+
+interface municipalitySearchResultsArgs {
+  name: string;
+  limit: number;
+}
+
+export const municipalitySearchResultsResolver = {
+  Query: {
+    municipalitySearch: (
+      _: unknown,
+      { name, limit }: municipalitySearchResultsArgs
+    ): MunicipalitySearchResult[] | undefined => {
+      const fuseOptions: Fuse.IFuseOptions<MunicipalitySearchResult> = {
+        threshold: 0.2,
+        keys: ["municipalityName"],
+        getFn: (obj) => {
+          const value = diacritics.remove(obj.municipalityName);
+          return value;
+        },
+      };
+      const fuse = new Fuse(municipalities.municipalities, fuseOptions);
+
+      const searchResults = fuse.search(diacritics.remove(name));
+
+      const result = searchResults
+        .map((searchResult) => searchResult.item)
+        .slice(0, limit);
+
+      return result;
+    },
+  },
+};
