@@ -5,6 +5,7 @@ import {
   municipalityCasesMetadataType,
 } from "./types/municipalityCases";
 import { municipalitySearchResultType } from "./types/search/municipalitySearchResultType";
+import { serverInfoType } from "./types/serverInfo/serverInfoType";
 
 export const typeDefs = [
   query,
@@ -12,4 +13,5 @@ export const typeDefs = [
   dayCasesType,
   municipalityCasesMetadataType,
   municipalitySearchResultType,
+  serverInfoType,
 ];
