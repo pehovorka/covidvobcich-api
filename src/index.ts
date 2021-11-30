@@ -7,25 +7,9 @@ initializeFirebase();
 import { config } from "./config";
 import { typeDefs } from "./typeDefs";
 import { resolvers } from "./resolvers";
+import { getCorsOptions } from "./utils/getCorsOptions";
 
 const startApolloServer = async () => {
-  let corsOptions = {
-    origin: [
-      "https://*.covidvobcich.cz",
-      "http://localhost:3000",
-      "https://studio.apollographql.com",
-      "https://*.hvrk.eu",
-    ],
-    methods: "GET,POST,OPTIONS",
-  };
-
-  if (process.env.NODE_ENV === "production") {
-    corsOptions = {
-      origin: ["https://covidvobcich.cz", "http://localhost:3000"],
-      methods: "GET,POST,OPTIONS",
-    };
-  }
-
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
@@ -35,7 +19,7 @@ const startApolloServer = async () => {
   await apolloServer.start();
   apolloServer.applyMiddleware({
     app,
-    cors: corsOptions,
+    cors: getCorsOptions(),
   });
 
   const port = config.port || 8081;
