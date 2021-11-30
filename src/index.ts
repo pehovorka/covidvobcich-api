@@ -9,11 +9,34 @@ import { typeDefs } from "./typeDefs";
 import { resolvers } from "./resolvers";
 
 const startApolloServer = async () => {
-  const apolloServer = new ApolloServer({ typeDefs, resolvers });
+  let corsOptions = {
+    origin: [
+      "https://*.covidvobcich.cz",
+      "http://localhost:3000",
+      "https://studio.apollographql.com",
+      "https://*.hvrk.eu",
+    ],
+    methods: "GET,POST,OPTIONS",
+  };
+
+  if (process.env.NODE_ENV === "production") {
+    corsOptions = {
+      origin: ["https://covidvobcich.cz", "http://localhost:3000"],
+      methods: "GET,POST,OPTIONS",
+    };
+  }
+
+  const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers,
+  });
   const app = express();
 
   await apolloServer.start();
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({
+    app,
+    cors: corsOptions,
+  });
 
   const port = config.port || 8081;
   app.listen(port, () => {
