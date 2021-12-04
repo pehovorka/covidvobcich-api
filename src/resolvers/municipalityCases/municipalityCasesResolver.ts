@@ -47,6 +47,12 @@ export const municipalityCasesResolver = {
           days: data.days.slice(-limit),
         };
 
+        // Return orpId 1000 for Prague.
+        // Source data contain "orpId": 0 and "orpName": "nezařazení" for some reason.
+        if (data.municipalityId === 554782) {
+          (result.orpId = 1000), (result.orpName = "Praha");
+        }
+
         return result;
       }
     },
