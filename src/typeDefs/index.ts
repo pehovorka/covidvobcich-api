@@ -4,6 +4,13 @@ import {
   dayCasesType,
   municipalityCasesMetadataType,
 } from "./types/municipalityCases";
+import {
+  dayVaccinationsType,
+  dosesOrderType,
+  orpVaccinationsType,
+  vaccineNamesType,
+  vaccineTypeType,
+} from "./types/orpVaccinations";
 import { municipalitySearchResultType } from "./types/search/municipalitySearchResultType";
 import { serverInfoType } from "./types/serverInfo/serverInfoType";
 
@@ -14,4 +21,9 @@ export const typeDefs = [
   municipalityCasesMetadataType,
   municipalitySearchResultType,
   serverInfoType,
+  dayVaccinationsType,
+  dosesOrderType,
+  orpVaccinationsType,
+  vaccineNamesType,
+  vaccineTypeType,
 ];
