@@ -3,6 +3,7 @@ import { municipalityCasesResolver } from "./municipalityCases/municipalityCases
 import { municipalitySearchResultsResolver } from "./search/municipalitySearchResultsResolver";
 import { serverInfoResolver } from "./serverInfo/serverInfoResolver";
 import { orpVaccinationsReslover } from "./orpVaccinations/orpVaccinationsResolver";
+import { orpVaccinationsMetadataResolver } from "./orpVaccinations/orpVaccinationsMetadataResolver";
 
 export const resolvers = [
   municipalityCasesResolver,
@@ -10,4 +11,5 @@ export const resolvers = [
   municipalitySearchResultsResolver,
   serverInfoResolver,
   orpVaccinationsReslover,
+  orpVaccinationsMetadataResolver,
 ];

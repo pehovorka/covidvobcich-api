@@ -10,6 +10,7 @@ import {
   orpVaccinationsType,
   vaccineNamesType,
   vaccineTypeType,
+  orpVaccinationsMetadataType,
 } from "./types/orpVaccinations";
 import { municipalitySearchResultType } from "./types/search/municipalitySearchResultType";
 import { serverInfoType } from "./types/serverInfo/serverInfoType";
@@ -26,4 +27,5 @@ export const typeDefs = [
   orpVaccinationsType,
   vaccineNamesType,
   vaccineTypeType,
+  orpVaccinationsMetadataType,
 ];
