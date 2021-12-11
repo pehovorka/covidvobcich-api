@@ -8,7 +8,10 @@
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
     "dev": "yarn run build && node lib/index.js",
-    "start": "node lib/index.js"
+    "start": "node lib/index.js",
+    "release": "yarn version",
+    "version": "yarn changelog && code CHANGELOG.md --wait && git add CHANGELOG.md",
+    "changelog": "gitmoji-changelog"
   },
   "dependencies": {
     "@types/diacritics": "^1.3.1",
@@ -24,6 +27,7 @@
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "eslint": "^8.3.0",
-    "eslint-plugin-import": "^2.25.3"
+    "eslint-plugin-import": "^2.25.3",
+    "gitmoji-changelog": "^2.2.1"
   }
 }
