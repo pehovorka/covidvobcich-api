@@ -1,3 +1,4 @@
 export { municipalityCasesType } from "./municipalityCasesType";
-export { dayCasesType } from "./dayCasesType";
+export { municipalityCasesOverviewType } from "./municipalityCasesOverviewType";
 export { municipalityCasesMetadataType } from "./municipalityCasesMetadataType";
+export { dayCasesType } from "./dayCasesType";
